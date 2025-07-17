@@ -1,6 +1,7 @@
 services:
     # sailでbuildする前にコンテナ名を決める。コンテナ作成後は固定する。
     laravel.blog:
+        container_name: bord
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
@@ -11,7 +12,7 @@ services:
             - 'host.docker.internal:host-gateway'
         ports:
             - '${APP_PORT:-100}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+            - '${VITE_PORT:-2525}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
@@ -49,7 +50,9 @@ services:
             retries: 3
             timeout: 5s
     phpmyadmin:
+        container_name: bord-phpmyadmin
         image: phpmyadmin/phpmyadmin
+        platform: linux/amd64
         links:
             - mysql:mysql
         ports:
