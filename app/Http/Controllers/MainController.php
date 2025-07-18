@@ -10,4 +10,11 @@ class MainController extends Controller
     {
         return view("top");
     }
+
+    public function store()
+    {
+        
+        return redirect()
+            ->route("top");
+    }
 }

@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.writing-rl {
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.h-fit {
+    height: fit-content;
+}
+
+.js-hidden {
+    display: none;
+}
