@@ -11,7 +11,7 @@ services:
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
-            - '${APP_PORT:-100}:80'
+            - '${APP_PORT:-40000}:80'
             - '${VITE_PORT:-2525}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
@@ -26,18 +26,20 @@ services:
         depends_on:
             - mysql
     mysql:
+        container_name: bord-mysql
         image: 'mysql/mysql-server:8.0'
         ports:
-            - '${FORWARD_DB_PORT:-20000}:3306'
+            - '${FORWARD_DB_PORT:-60000}:3306'
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: 'password'
             MYSQL_ROOT_HOST: '%'
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: 'bord'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'password'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
+            PMA_MOST: bord-mysql
         volumes:
-            - 'sail-mysql:/var/lib/mysql'
+            - 'sail-mysql-todo:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
             - sail
@@ -67,5 +69,5 @@ networks:
     sail:
         driver: bridge
 volumes:
-    sail-mysql:
+    sail-mysql-todo:
         driver: local
