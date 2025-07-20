@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\todolist\Item;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Blade::component("header", "components.todolist.header");
+        Blade::component("item", Item::class);
     }
 }

@@ -11,6 +11,9 @@ class TodoListRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        if($this->path() == "/"){
+            return true;
+        }
         return false;
     }
 
@@ -22,7 +25,8 @@ class TodoListRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "
+            "title" => "required",
+            "detail" => "required"
         ];
     }
 }

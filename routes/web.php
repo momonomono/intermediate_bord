@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [MainController::class, "index"])->name("top");
 Route::post("/", [MainController::class, "store"])->name("store");
 
+Route::post("/selecter", [MainController::class, "selecter"])->name("selecter");
+
 Route::get('/dashboard', function () {
     return redirect()->route("top");
 });
