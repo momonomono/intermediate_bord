@@ -8,6 +8,7 @@ use App\Models\Todolist;
 
 class MainController extends Controller
 {
+    
     public function index()
     {
         $todolists = Todolist::all();
@@ -38,5 +39,17 @@ class MainController extends Controller
         return response()->json([
             "list"  => $list
         ]);
+    }
+
+    public function edit(Request $request)
+    {
+        $todolist = $request->only(["title", "detail"]);
+        $id = $request -> input("id");
+
+        Todolist::where("id", $id)
+            ->update($todolist);
+
+        return redirect()
+            ->route("top");
     }
 }

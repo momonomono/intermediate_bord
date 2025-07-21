@@ -21,7 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::component("header", "components.todolist.header");
-        Blade::component("item", Item::class);
+        Blade::component("components.todolist.label-form", "label-form");
     }
 }

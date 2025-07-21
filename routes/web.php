@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [MainController::class, "index"])->name("top");
 Route::post("/", [MainController::class, "store"])->name("store");
+Route::patch("/", [MainController::class, "edit"])->name("edit");
 
 Route::post("/selecter", [MainController::class, "selecter"])->name("selecter");
+
+Route::post("delete", [MainController::class, "delete"])->name("delete");
 
 Route::get('/dashboard', function () {
     return redirect()->route("top");
