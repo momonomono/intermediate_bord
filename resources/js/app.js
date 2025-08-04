@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // エラーメッセージが保管してるdivからデータを取り出す
     const metaTag = document.querySelector("meta[name='error-message']");
     const errors = JSON.parse(metaTag.content);
+    // ログ出力は最終的に削除すること
     console.log(errors.length);
 
     // バリデーションが存在する時に表示

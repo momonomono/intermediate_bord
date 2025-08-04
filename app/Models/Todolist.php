@@ -19,14 +19,18 @@ class TodoList extends Model
         return self::create([
             "title" => $data["title"],
             "detail" => $data["detail"],
+            // マイグレーションで$table->timestamps();を使用しているため、
+            // created_atとupdated_atは記載しなくてもよい。
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now(),
         ]);
     }
 
+    // このメソッド使用していない？
     public static function updateStatus(array $data)
     {
-        return self::where("id", $data["id"])
+        // idで検索するなら、findのほうが簡単になる。
+        return self::find($data["id"])
             ->update(["status", $data["status"]]);
     }
 }

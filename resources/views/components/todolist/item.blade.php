@@ -12,10 +12,10 @@
         <select name="status" class="h-10 text-md js-todolist-selecter" data-id="{{ $id }}" >
             @foreach($statuses as $val)
                 <option 
-                    value="{{ $val->value}}"
+                    value="{{ $val->value }}"
                     @selected($val->value == $status)
                 >
-                    {{ $val->label()}}
+                    {{ $val->label() }}
                 </option>
             @endforeach
         </select>
